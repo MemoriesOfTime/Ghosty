@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.easecation</groupId>
-    <artifactId>Ghosty-JAVA8</artifactId>
-    <version>B20240115-MOT-C1</version>
+    <artifactId>Ghosty</artifactId>
+    <version>B20240115-MOT-C1-JAVA8</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
