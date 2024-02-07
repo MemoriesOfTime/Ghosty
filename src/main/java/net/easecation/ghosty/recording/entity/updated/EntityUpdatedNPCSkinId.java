@@ -48,7 +48,8 @@ public class EntityUpdatedNPCSkinId implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedNPCSkinId o)) return false;
+        if(!(obj instanceof EntityUpdatedNPCSkinId)) return false;
+        EntityUpdatedNPCSkinId o = (EntityUpdatedNPCSkinId) obj;
         return data == o.data;
     }
 

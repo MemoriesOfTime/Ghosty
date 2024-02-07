@@ -61,7 +61,8 @@ public class PlayerUpdatedRotation implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedRotation o)) return false;
+        if(!(obj instanceof PlayerUpdatedRotation)) return false;
+        PlayerUpdatedRotation o = (PlayerUpdatedRotation) obj;
         return (yaw == o.yaw) && (pitch == o.pitch);
     }
 

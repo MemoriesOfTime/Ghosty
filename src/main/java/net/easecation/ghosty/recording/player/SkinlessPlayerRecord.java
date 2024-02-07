@@ -14,6 +14,7 @@ import net.easecation.ghosty.recording.player.updated.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static net.easecation.ghosty.GhostyPlugin.DEBUG_DUMP;
 
@@ -178,7 +179,7 @@ public class SkinlessPlayerRecord implements PlayerRecord {
     public double getMaxMovement() {
         Vector3 lastPos = null;
         double maxMovement = 0;
-        for (RecordPair pair : this.rec.stream().filter(p -> p.updated instanceof PlayerUpdatedPositionXYZ).toList()) {
+        for (RecordPair pair : this.rec.stream().filter(p -> p.updated instanceof PlayerUpdatedPositionXYZ).collect(Collectors.toList())) {
             PlayerUpdatedPositionXYZ pos = (PlayerUpdatedPositionXYZ) pair.updated;
             Vector3 newPos = pos.asVector3();
             if (lastPos != null) {
@@ -193,7 +194,7 @@ public class SkinlessPlayerRecord implements PlayerRecord {
     public double calculateMovementVariance() {
         Vector3 lastPos = null;
 
-        List<RecordPair> pairs = this.rec.stream().filter(p -> p.updated instanceof PlayerUpdatedPositionXYZ).toList();
+        List<RecordPair> pairs = this.rec.stream().filter(p -> p.updated instanceof PlayerUpdatedPositionXYZ).collect(Collectors.toList());
         if (pairs.size() <= 1) return 0;
         double[] distances = new double[pairs.size() - 1];
         for (int i = 0; i < pairs.size(); i++) {

@@ -2,7 +2,6 @@ package net.easecation.ghosty.recording.player.updated;
 
 import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
-import cn.nukkit.network.protocol.ProtocolInfo;
 import cn.nukkit.utils.BinaryStream;
 import net.easecation.ghosty.GhostyPlugin;
 import net.easecation.ghosty.entity.PlaybackNPC;
@@ -55,8 +54,9 @@ public class PlayerUpdatedArmor2 implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedArmor2 o)) return false;
-        return (item.equals(o.item));
+        if(!(obj instanceof PlayerUpdatedArmor2)) return false;
+        PlayerUpdatedArmor2 o = (PlayerUpdatedArmor2) obj;
+        return item.equals(o.item);
     }
 
     @Override

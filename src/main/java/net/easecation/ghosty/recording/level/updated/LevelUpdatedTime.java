@@ -45,7 +45,8 @@ public class LevelUpdatedTime implements LevelUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LevelUpdatedTime o)) return false;
+        if(!(obj instanceof LevelUpdatedTime)) return false;
+        LevelUpdatedTime o = (LevelUpdatedTime) obj;
         return this.time == o.time;
     }
 

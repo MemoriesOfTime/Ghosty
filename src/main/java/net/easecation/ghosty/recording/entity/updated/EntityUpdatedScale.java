@@ -46,7 +46,8 @@ public class EntityUpdatedScale implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedScale o)) return false;
+        if(!(obj instanceof EntityUpdatedScale)) return false;
+        EntityUpdatedScale o = (EntityUpdatedScale) obj;
         return (scale == o.scale);
     }
 

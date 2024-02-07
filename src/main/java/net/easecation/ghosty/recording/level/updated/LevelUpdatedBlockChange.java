@@ -53,7 +53,8 @@ public class LevelUpdatedBlockChange implements LevelUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LevelUpdatedBlockChange o)) return false;
+        if(!(obj instanceof LevelUpdatedBlockChange)) return false;
+        LevelUpdatedBlockChange o = (LevelUpdatedBlockChange) obj;
         return (pos.equals(o.pos)) && (block.equals(o.block));
     }
 

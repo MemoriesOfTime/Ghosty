@@ -53,7 +53,8 @@ public class PlayerUpdatedWorldChanged implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof PlayerUpdatedWorldChanged o)) return false;
+        if (!(obj instanceof PlayerUpdatedWorldChanged)) return false;
+        PlayerUpdatedWorldChanged o = (PlayerUpdatedWorldChanged) obj;
         return (Objects.equals(wn, o.wn));
     }
 

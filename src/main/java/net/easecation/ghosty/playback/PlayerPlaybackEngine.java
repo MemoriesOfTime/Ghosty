@@ -12,6 +12,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.easecation.ghosty.GhostyPlugin;
 import net.easecation.ghosty.PlaybackIterator;
+import net.easecation.ghosty.RecordEntry;
 import net.easecation.ghosty.entity.PlaybackNPC;
 import net.easecation.ghosty.recording.player.PlayerRecord;
 import net.easecation.ghosty.recording.player.PlayerRecordNode;
@@ -194,21 +195,21 @@ public class PlayerPlaybackEngine {
             if (!realFrame) {
                 InterpolationNext interpolationNext0 = new InterpolationNext();
                 iterator.peekFirstMatch(u -> u.getUpdateTypeId() == PlayerUpdated.TYPE_POSITION_XYZ).ifPresent(u -> {
-                    int tick = u.tick();
+                    int tick = u.getTick();
                     if (tick - this.getTick() > 20) {
                         // 20tick以上的补间不做
                         return;
                     }
-                    PlayerUpdatedPositionXYZ xyz = (PlayerUpdatedPositionXYZ) u.entry();
+                    PlayerUpdatedPositionXYZ xyz = (PlayerUpdatedPositionXYZ) u.getEntry();
                     interpolationNext0.setXYZ(tick, xyz.getX(), xyz.getY(), xyz.getZ());
                 });
                 iterator.peekFirstMatch(u -> u.getUpdateTypeId() == PlayerUpdated.TYPE_ROTATION).ifPresent(u -> {
-                    int tick = u.tick();
+                    int tick = u.getTick();
                     if (tick - this.getTick() > 20) {
                         // 20tick以上的补间不做
                         return;
                     }
-                    PlayerUpdatedRotation xyz = (PlayerUpdatedRotation) u.entry();
+                    PlayerUpdatedRotation xyz = (PlayerUpdatedRotation) u.getEntry();
                     interpolationNext0.setRotation(tick, xyz.getYaw(), xyz.getPitch());
                 });
                 interpolationNext = interpolationNext0;
@@ -238,7 +239,7 @@ public class PlayerPlaybackEngine {
                     if (!updatedByType.containsKey(i)) {
                         int finalI = i;
                         iterator.peekBackwardFirstMatch(u -> u.getUpdateTypeId() == finalI)
-                            .map(PlaybackIterator.RecordEntry::entry)
+                            .map(RecordEntry::getEntry)
                             .filter(PlayerUpdated::hasStates)
                             .ifPresent(realUpdates::add);
                     }

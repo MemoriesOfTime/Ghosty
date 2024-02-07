@@ -52,23 +52,36 @@ public interface LevelUpdated {
      */
     static LevelUpdated fromBinaryStream(BinaryStream stream) {
         int type = stream.getByte();
-        return switch (type) {
-            case TYPE_BLOCK_CHANGE -> new LevelUpdatedBlockChange(stream);
-            case TYPE_BLOCK_EVENT -> new LevelUpdatedBlockEvent(stream);
-            case TYPE_LEVEL_EVENT -> new LevelUpdatedLevelEvent(stream);
-            case TYPE_LEVEL_SOUND_EVENT -> new LevelUpdatedLevelSoundEvent(stream);
-            case TYPE_PLAY_SOUND -> new LevelUpdatedPlaySound(stream);
-            case TYPE_TITLE -> new LevelUpdatedTitle(stream);
-            case TYPE_MESSAGE -> new LevelUpdatedMessage(stream);
-            case TYPE_ACTION_BAR -> new LevelUpdatedActionBar(stream);
-            case TYPE_POPUP -> new LevelUpdatedPopup(stream);
-            // case TYPE_BOSS_EVENT -> new LevelUpdatedBossEvent(stream);
-            // case TYPE_SCOREBOARD_DISPLAY -> new LevelUpdatedScoreboardDisplay(stream);
-            case TYPE_CUSTOM_EVENT -> new LevelUpdatedCustom(stream);
-            case TYPE_TIME -> new LevelUpdatedTime(stream);
-            case TYPE_WEATHER -> new LevelUpdatedWeather(stream);
-            default -> throw new IllegalArgumentException("Unknown LevelUpdated type id: " + type);
-        };
+        switch (type) {
+            case TYPE_BLOCK_CHANGE:
+                 return new LevelUpdatedBlockChange(stream);
+            case TYPE_BLOCK_EVENT:
+                 return new LevelUpdatedBlockEvent(stream);
+            case TYPE_LEVEL_EVENT:
+                 return new LevelUpdatedLevelEvent(stream);
+            case TYPE_LEVEL_SOUND_EVENT:
+                 return new LevelUpdatedLevelSoundEvent(stream);
+            case TYPE_PLAY_SOUND:
+                 return new LevelUpdatedPlaySound(stream);
+            case TYPE_TITLE:
+                 return new LevelUpdatedTitle(stream);
+            case TYPE_MESSAGE:
+                 return new LevelUpdatedMessage(stream);
+            case TYPE_ACTION_BAR:
+                 return new LevelUpdatedActionBar(stream);
+            case TYPE_POPUP:
+                 return new LevelUpdatedPopup(stream);
+            // case TYPE_BOSS_EVENT: return new LevelUpdatedBossEvent(stream);
+            // case TYPE_SCOREBOARD_DISPLAY: return new LevelUpdatedScoreboardDisplay(stream);
+            case TYPE_CUSTOM_EVENT:
+                 return new LevelUpdatedCustom(stream);
+            case TYPE_TIME:
+                 return new LevelUpdatedTime(stream);
+            case TYPE_WEATHER:
+                 return new LevelUpdatedWeather(stream);
+            default:
+                 throw new IllegalArgumentException("Unknown LevelUpdated type id: " + type);
+        }
     }
 
 }

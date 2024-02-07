@@ -3,6 +3,7 @@ package net.easecation.ghosty.recording.entity.updated;
 import cn.nukkit.utils.BinaryStream;
 import net.easecation.ghosty.entity.SimulatedEntity;
 import net.easecation.ghosty.recording.entity.EntityRecordNode;
+import net.easecation.ghosty.recording.entity.SkinInfo;
 
 import java.util.Objects;
 
@@ -30,12 +31,12 @@ public class EntityUpdatedSkinInfo implements EntityUpdated {
 
     @Override
     public void processTo(SimulatedEntity entity) {
-        entity.setSkinInfo(new SimulatedEntity.SkinInfo(geometryName, skinDataHash));
+        entity.setSkinInfo(new SkinInfo(geometryName, skinDataHash));
     }
 
     @Override
     public EntityRecordNode applyTo(EntityRecordNode node) {
-        node.setSkinInfo(new SimulatedEntity.SkinInfo(geometryName, skinDataHash));
+        node.setSkinInfo(new SkinInfo(geometryName, skinDataHash));
         return node;
     }
 
@@ -50,7 +51,8 @@ public class EntityUpdatedSkinInfo implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedSkinInfo o)) return false;
+        if(!(obj instanceof EntityUpdatedSkinInfo)) return false;
+        EntityUpdatedSkinInfo o = (EntityUpdatedSkinInfo) obj;
         return (Objects.equals(geometryName, o.geometryName));
     }
 

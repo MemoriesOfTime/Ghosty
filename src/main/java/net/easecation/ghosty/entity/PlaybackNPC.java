@@ -63,9 +63,13 @@ public class PlaybackNPC extends EntityHuman implements InventoryHolder {
 
     @Override
     public boolean attack(EntityDamageEvent source) {
-        if (source instanceof EntityDamageByEntityEvent event && event.getDamager() instanceof Player player) {
-            if (this.engine.getInteractNPCCallback() != null) {
-                this.engine.getInteractNPCCallback().accept(engine, player);
+        if (source instanceof EntityDamageByEntityEvent) {
+            EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) source;
+            Player player = (Player) event.getDamager();
+            if (event.getDamager() instanceof Player) {
+                if (this.engine.getInteractNPCCallback() != null) {
+                    this.engine.getInteractNPCCallback().accept(engine, player);
+                }
             }
         }
         return false;

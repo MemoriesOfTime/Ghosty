@@ -50,7 +50,8 @@ public class LevelUpdatedPopup implements LevelUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LevelUpdatedPopup o)) return false;
+        if(!(obj instanceof LevelUpdatedPopup)) return false;
+        LevelUpdatedPopup o = (LevelUpdatedPopup) obj;
         return this.message.equals(o.message);
     }
 

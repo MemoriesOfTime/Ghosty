@@ -3,6 +3,7 @@ package net.easecation.ghosty.recording.entity.updated;
 import cn.nukkit.utils.BinaryStream;
 import net.easecation.ghosty.entity.SimulatedEntity;
 import net.easecation.ghosty.recording.entity.EntityRecordNode;
+import net.easecation.ghosty.recording.player.updated.PlayerUpdatedArmor2;
 
 import java.util.Objects;
 
@@ -48,7 +49,8 @@ public class EntityUpdatedScoreTag implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedScoreTag o)) return false;
+        if(!(obj instanceof EntityUpdatedScoreTag)) return false;
+        EntityUpdatedScoreTag o = (EntityUpdatedScoreTag) obj;
         return (Objects.equals(tn, o.tn));
     }
 

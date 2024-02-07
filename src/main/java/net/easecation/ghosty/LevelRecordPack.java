@@ -107,11 +107,11 @@ public class LevelRecordPack {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
                 if (entry.getName().startsWith("level_record")) {
-                    levelRecord = LevelRecord.fromBinary(zis.readAllBytes());
+                    levelRecord = LevelRecord.fromBinary(Utils.readAllBytes(zis));
                 } else if (entry.getName().startsWith("player/")) {
-                    playerRecords.add(PlayerRecord.fromBinary(zis.readAllBytes()));
+                    playerRecords.add(PlayerRecord.fromBinary(Utils.readAllBytes(zis)));
                 } else if (entry.getName().startsWith("entity/")) {
-                    EntityRecord entityRecord = EntityRecord.fromBinary(zis.readAllBytes());
+                    EntityRecord entityRecord = EntityRecord.fromBinary(Utils.readAllBytes(zis));
                     entityRecords.add(entityRecord);
                 } else if (entry.getName().equals("metadata.json")) {
                     metadata = new Gson().fromJson(new InputStreamReader(zis), JsonObject.class);

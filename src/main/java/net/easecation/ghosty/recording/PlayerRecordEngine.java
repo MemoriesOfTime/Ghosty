@@ -97,15 +97,18 @@ public class PlayerRecordEngine {
     }
 
     public void onPacketSendEvent(DataPacket packet) {
-        if (packet instanceof AnimatePacket pk) {
+        if (packet instanceof AnimatePacket) {
+            AnimatePacket pk = (AnimatePacket) packet;
             if (pk.eid == this.player.getId()/* || pk.eid == SynapsePlayer.SYNAPSE_PLAYER_ENTITY_ID*/) {
                 this.extraUpdates.add(PlayerUpdatedAnimate.of(pk.action.getId(), pk.rowingTime));
             }
-        } else if (packet instanceof EntityEventPacket pk) {
+        } else if (packet instanceof EntityEventPacket) {
+            EntityEventPacket pk = (EntityEventPacket) packet;
             if (pk.eid == this.player.getId()/* || pk.eid == SynapsePlayer.SYNAPSE_PLAYER_ENTITY_ID*/) {
                 this.extraUpdates.add(PlayerUpdatedEntityEvent.of(pk.event, pk.data));
             }
-        } else if (packet instanceof TakeItemEntityPacket pk) {
+        } else if (packet instanceof TakeItemEntityPacket) {
+            TakeItemEntityPacket pk = (TakeItemEntityPacket) packet;
             if (pk.entityId == this.player.getId()/* || pk.entityId == SynapsePlayer.SYNAPSE_PLAYER_ENTITY_ID*/) {
                 this.extraUpdates.add(PlayerUpdatedTakeItemEntity.of(pk.target));
             }
@@ -113,7 +116,8 @@ public class PlayerRecordEngine {
     }
 
     public void onPacketReceiveEvent(DataPacket packet) {
-        if (packet instanceof AnimatePacket pk) {
+        if (packet instanceof AnimatePacket) {
+            AnimatePacket pk = (AnimatePacket) packet;
             this.extraUpdates.add(PlayerUpdatedAnimate.of(pk.action.getId(), pk.rowingTime));
         }
     }

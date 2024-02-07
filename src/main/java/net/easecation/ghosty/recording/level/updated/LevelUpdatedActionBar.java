@@ -62,7 +62,8 @@ public class LevelUpdatedActionBar implements LevelUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LevelUpdatedActionBar o)) return false;
+        if(!(obj instanceof LevelUpdatedActionBar)) return false;
+        LevelUpdatedActionBar o = (LevelUpdatedActionBar) obj;
         return this.message.equals(o.message) && this.fadeInTime == o.fadeInTime && this.stayTime == o.stayTime && this.fadeOutTime == o.fadeOutTime;
     }
 

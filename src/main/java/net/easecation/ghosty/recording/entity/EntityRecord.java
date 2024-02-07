@@ -37,9 +37,9 @@ public interface EntityRecord {
     static EntityRecord fromBinary(byte[] data) {
         BinaryStream stream = new BinaryStream(data);
         byte type = (byte) stream.getByte();
-        return switch (type) {
-            case OBJECT_V0 -> new EntityRecordImpl(stream);
-            default -> null;
-        };
+        if (type == OBJECT_V0) {
+            return new EntityRecordImpl(stream);
+        }
+        return null;
     }
 }

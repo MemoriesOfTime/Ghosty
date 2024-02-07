@@ -46,7 +46,8 @@ public class EntityUpdatedNameTagAlwaysVisible implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedNameTagAlwaysVisible o)) return false;
+        if(!(obj instanceof EntityUpdatedNameTagAlwaysVisible)) return false;
+        EntityUpdatedNameTagAlwaysVisible o = (EntityUpdatedNameTagAlwaysVisible) obj;
         return (visible == o.visible);
     }
 

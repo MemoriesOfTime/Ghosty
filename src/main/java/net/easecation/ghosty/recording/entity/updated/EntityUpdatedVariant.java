@@ -48,7 +48,8 @@ public class EntityUpdatedVariant implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedVariant o)) return false;
+        if(!(obj instanceof EntityUpdatedVariant)) return false;
+        EntityUpdatedVariant o = (EntityUpdatedVariant) obj;
         return data == o.data;
     }
 

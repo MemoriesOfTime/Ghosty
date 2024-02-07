@@ -31,10 +31,13 @@ public interface PlayerRecord {
     static PlayerRecord fromBinary(byte[] data) {
         BinaryStream stream = new BinaryStream(data);
         byte type = (byte) stream.getByte();
-        return switch (type) {
-            case OBJECT_LML -> new LmlPlayerRecord(stream);
-            case OBJECT_SKINLESS -> new SkinlessPlayerRecord(stream);
-            default -> null;
-        };
+        switch (type) {
+            case OBJECT_LML:
+                return new LmlPlayerRecord(stream);
+            case OBJECT_SKINLESS:
+                return new SkinlessPlayerRecord(stream);
+            default:
+                return null;
+        }
     }
 }

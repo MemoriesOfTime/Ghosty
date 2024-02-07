@@ -53,7 +53,8 @@ public class LevelUpdatedCustom implements LevelUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LevelUpdatedCustom o)) return false;
+        if(!(obj instanceof LevelUpdatedCustom)) return false;
+        LevelUpdatedCustom o = (LevelUpdatedCustom) obj;
         return this.obj.equals(o.obj);
     }
 

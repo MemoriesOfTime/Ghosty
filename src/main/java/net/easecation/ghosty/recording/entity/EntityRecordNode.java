@@ -31,17 +31,19 @@ public final class EntityRecordNode implements Serializable {
     private int varint;
     private int markVariant;
 
-    private SimulatedEntity.SkinInfo skinInfo;
+    private SkinInfo skinInfo;
 
     public static EntityRecordNode of(Entity entity) {
         Item item = null;
-        SimulatedEntity.SkinInfo skinInfo = null;
-        if (entity instanceof EntityItem entityItem) {
+        SkinInfo skinInfo = null;
+        if (entity instanceof EntityItem) {
+            EntityItem entityItem = (EntityItem) entity;
             item = entityItem.getItem();
-        } else if (entity instanceof EntityHuman human) {
+        } else if (entity instanceof EntityHuman) {
+            EntityHuman human = (EntityHuman) entity;
             item = human.getInventory().getItemInHand();
             if (human.getSkin() != null) {
-                skinInfo = SimulatedEntity.SkinInfo.fromSkin(human.getSkin());
+                skinInfo = SkinInfo.fromSkin(human.getSkin());
             }
         } else if (entity.getNetworkId() == EntityItem.NETWORK_ID) {
             // 尝试从nbt读取物品
@@ -77,7 +79,8 @@ public final class EntityRecordNode implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof EntityRecordNode node) {
+        if (obj instanceof EntityRecordNode) {
+            EntityRecordNode node = (EntityRecordNode) obj;
             return this.x == node.x &&
                     this.y == node.y &&
                     this.z == node.z &&
@@ -101,7 +104,7 @@ public final class EntityRecordNode implements Serializable {
     private EntityRecordNode(double x, double y, double z, double yaw, double pitch,
                              String tagName, String scoreTag, Item item,
                              long dataFlags, float scale, boolean nameTagAlwaysVisible,
-                             int skinId, int npcSkinId, int varint, int markVariant, SimulatedEntity.SkinInfo skinInfo) {
+                             int skinId, int npcSkinId, int varint, int markVariant, SkinInfo skinInfo) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -240,11 +243,11 @@ public final class EntityRecordNode implements Serializable {
         this.markVariant = markVariant;
     }
 
-    public SimulatedEntity.SkinInfo getSkinInfo() {
+    public SkinInfo getSkinInfo() {
         return skinInfo;
     }
 
-    public void setSkinInfo(SimulatedEntity.SkinInfo skinInfo) {
+    public void setSkinInfo(SkinInfo skinInfo) {
         this.skinInfo = skinInfo;
     }
 }

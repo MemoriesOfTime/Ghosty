@@ -66,7 +66,8 @@ public class LevelUpdatedTitle implements LevelUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LevelUpdatedTitle o)) return false;
+        if(!(obj instanceof LevelUpdatedTitle)) return false;
+        LevelUpdatedTitle o = (LevelUpdatedTitle) obj;
         return this.title.equals(o.title) && this.subTitle.equals(o.subTitle) && this.fadeInTime == o.fadeInTime && this.fadeOutTime == o.fadeOutTime && this.stayTime == o.stayTime;
     }
 

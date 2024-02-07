@@ -67,23 +67,38 @@ public interface PlayerUpdated {
      * @return PlayerUpdated
      */
     static PlayerUpdated fromBinaryStream(BinaryStream stream) {
-        return switch (stream.getByte()) {
-            case TYPE_POSITION_XYZ -> new PlayerUpdatedPositionXYZ(stream);
-            case TYPE_ROTATION -> new PlayerUpdatedRotation(stream);
-            case TYPE_TAG_NAME -> new PlayerUpdatedTagName(stream);
-            case TYPE_WORLD -> new PlayerUpdatedWorldChanged(stream);
-            case TYPE_DATA_FLAGS -> new PlayerUpdatedDataFlags(stream);
-            case TYPE_ITEM -> new PlayerUpdatedItem(stream);
-            case TYPE_ANIMATE -> new PlayerUpdatedAnimate(stream);
-            case TYPE_ENTITY_EVENT -> new PlayerUpdatedEntityEvent(stream);
-            case TYPE_ARMOR_0 -> new PlayerUpdatedArmor0(stream);
-            case TYPE_ARMOR_1 -> new PlayerUpdatedArmor1(stream);
-            case TYPE_ARMOR_2 -> new PlayerUpdatedArmor2(stream);
-            case TYPE_ARMOR_3 -> new PlayerUpdatedArmor3(stream);
-            case TYPE_OFFHAND -> new PlayerUpdatedOffhand(stream);
-            case TYPE_TAKE_ITEM_ENTITY -> new PlayerUpdatedTakeItemEntity(stream);
-            default -> null;
-        };
+        switch (stream.getByte()) {
+            case TYPE_POSITION_XYZ: 
+                return new PlayerUpdatedPositionXYZ(stream);
+            case TYPE_ROTATION: 
+                return new PlayerUpdatedRotation(stream);
+            case TYPE_TAG_NAME: 
+                return new PlayerUpdatedTagName(stream);
+            case TYPE_WORLD: 
+                return new PlayerUpdatedWorldChanged(stream);
+            case TYPE_DATA_FLAGS: 
+                return new PlayerUpdatedDataFlags(stream);
+            case TYPE_ITEM: 
+                return new PlayerUpdatedItem(stream);
+            case TYPE_ANIMATE: 
+                return new PlayerUpdatedAnimate(stream);
+            case TYPE_ENTITY_EVENT: 
+                return new PlayerUpdatedEntityEvent(stream);
+            case TYPE_ARMOR_0: 
+                return new PlayerUpdatedArmor0(stream);
+            case TYPE_ARMOR_1: 
+                return new PlayerUpdatedArmor1(stream);
+            case TYPE_ARMOR_2: 
+                return new PlayerUpdatedArmor2(stream);
+            case TYPE_ARMOR_3: 
+                return new PlayerUpdatedArmor3(stream);
+            case TYPE_OFFHAND: 
+                return new PlayerUpdatedOffhand(stream);
+            case TYPE_TAKE_ITEM_ENTITY: 
+                return new PlayerUpdatedTakeItemEntity(stream);
+            default: 
+                return null;
+        }
     }
 
 }

@@ -61,7 +61,8 @@ public class EntityUpdatedPositionXYZ implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedPositionXYZ o)) return false;
+        if(!(obj instanceof EntityUpdatedPositionXYZ)) return false;
+        EntityUpdatedPositionXYZ o = (EntityUpdatedPositionXYZ) obj;
         return (x == o.x) && (y == o.y) && (z==o.z);
     }
 

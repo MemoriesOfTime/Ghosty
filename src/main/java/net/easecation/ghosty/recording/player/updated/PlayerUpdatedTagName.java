@@ -48,7 +48,8 @@ public class PlayerUpdatedTagName implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedTagName o)) return false;
+        if(!(obj instanceof PlayerUpdatedTagName)) return false;
+        PlayerUpdatedTagName o = (PlayerUpdatedTagName) obj;
         return (Objects.equals(tn, o.tn));
     }
 

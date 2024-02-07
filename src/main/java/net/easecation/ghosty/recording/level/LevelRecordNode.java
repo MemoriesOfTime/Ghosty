@@ -67,17 +67,21 @@ public final class LevelRecordNode {
         for (Map.Entry<Long, List<DataPacket>> entry : levelChunkPackets.long2ObjectEntrySet()) {
             for (DataPacket packet : entry.getValue()) {
                 // BlockEventPacket
-                if (packet instanceof BlockEventPacket pk) {
+                if (packet instanceof BlockEventPacket) {
+                    BlockEventPacket pk = (BlockEventPacket) packet;
                     list.add(LevelUpdatedBlockEvent.of(pk));
                 }
                 // LevelEventPacket
-                else if (packet instanceof LevelEventPacket pk) {
+                else if (packet instanceof LevelEventPacket) {
+                    LevelEventPacket pk = (LevelEventPacket) packet;
                     list.add(LevelUpdatedLevelEvent.of(pk));
                 }
                 // LevelSoundEventPacket
-                else if (packet instanceof LevelSoundEventPacket pk) {
+                else if (packet instanceof LevelSoundEventPacket) {
+                    LevelSoundEventPacket pk = (LevelSoundEventPacket) packet;
                     list.add(LevelUpdatedLevelSoundEvent.of(pk));
-                } else if (packet instanceof PlaySoundPacket pk) {
+                } else if (packet instanceof PlaySoundPacket) {
+                    PlaySoundPacket pk = (PlaySoundPacket) packet;
                     list.add(LevelUpdatedPlaySound.of(pk));
                 }
             }

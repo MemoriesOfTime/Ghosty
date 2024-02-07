@@ -31,9 +31,12 @@ public class PlayerUpdatedTakeItemEntity implements PlayerUpdated {
         if (ghost != null) {
             long target = -1;
             for (Entity entity : ghost.getLevel().getEntities()) {
-                if (entity instanceof SimulatedEntity sim && sim.getOriginEid() == targetEntityId) {
-                    target = sim.getId();
-                    break;
+                if (entity instanceof SimulatedEntity) {
+                    SimulatedEntity sim = (SimulatedEntity) entity;
+                    if (sim.getOriginEid() == targetEntityId) {
+                        target = sim.getId();
+                        break;
+                    }
                 }
             }
             if (target != -1) {
@@ -61,7 +64,8 @@ public class PlayerUpdatedTakeItemEntity implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedTakeItemEntity o)) return false;
+        if(!(obj instanceof PlayerUpdatedTakeItemEntity)) return false;
+        PlayerUpdatedTakeItemEntity o = (PlayerUpdatedTakeItemEntity) obj;
         return this.targetEntityId == o.targetEntityId;
     }
 

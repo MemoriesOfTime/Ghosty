@@ -67,23 +67,38 @@ public interface EntityUpdated {
      * @return PlayerUpdated
      */
     static EntityUpdated fromBinaryStream(BinaryStream stream) {
-        return switch (stream.getByte()) {
-            case TYPE_POSITION_XYZ -> new EntityUpdatedPositionXYZ(stream);
-            case TYPE_ROTATION -> new EntityUpdatedRotation(stream);
-            case TYPE_TAG_NAME -> new EntityUpdatedTagName(stream);
-            case TYPE_SCORE_TAG -> new EntityUpdatedScoreTag(stream);
-            case TYPE_DATA_FLAGS -> new EntityUpdatedDataFlags(stream);
-            case TYPE_ITEM -> new EntityUpdatedItem(stream);
-            case TYPE_SCALE -> new EntityUpdatedScale(stream);
-            case TYPE_CLOSE -> new EntityUpdatedClose(stream);
-            case TYPE_NAMETAG_ALWAYS_VISIBLE -> new EntityUpdatedNameTagAlwaysVisible(stream);
-            case TYPE_SKIN_ID -> new EntityUpdatedSkinId(stream);
-            case TYPE_NPC_SKIN_ID -> new EntityUpdatedNPCSkinId(stream);
-            case TYPE_VARIANT -> new EntityUpdatedVariant(stream);
-            case TYPE_MARK_VARIANT -> new EntityUpdatedMarkVariant(stream);
-            case TYPE_SKIN_INFO -> new EntityUpdatedSkinInfo(stream);
-            default -> null;
-        };
+        switch (stream.getByte()) {
+            case TYPE_POSITION_XYZ: 
+                return new EntityUpdatedPositionXYZ(stream);
+            case TYPE_ROTATION: 
+                return new EntityUpdatedRotation(stream);
+            case TYPE_TAG_NAME: 
+                return new EntityUpdatedTagName(stream);
+            case TYPE_SCORE_TAG: 
+                return new EntityUpdatedScoreTag(stream);
+            case TYPE_DATA_FLAGS: 
+                return new EntityUpdatedDataFlags(stream);
+            case TYPE_ITEM: 
+                return new EntityUpdatedItem(stream);
+            case TYPE_SCALE: 
+                return new EntityUpdatedScale(stream);
+            case TYPE_CLOSE: 
+                return new EntityUpdatedClose(stream);
+            case TYPE_NAMETAG_ALWAYS_VISIBLE: 
+                return new EntityUpdatedNameTagAlwaysVisible(stream);
+            case TYPE_SKIN_ID: 
+                return new EntityUpdatedSkinId(stream);
+            case TYPE_NPC_SKIN_ID: 
+                return new EntityUpdatedNPCSkinId(stream);
+            case TYPE_VARIANT: 
+                return new EntityUpdatedVariant(stream);
+            case TYPE_MARK_VARIANT: 
+                return new EntityUpdatedMarkVariant(stream);
+            case TYPE_SKIN_INFO: 
+                return new EntityUpdatedSkinInfo(stream);
+            default: 
+                return null;
+        }
     }
 
 }

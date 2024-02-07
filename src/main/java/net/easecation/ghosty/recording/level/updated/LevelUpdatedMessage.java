@@ -3,6 +3,7 @@ package net.easecation.ghosty.recording.level.updated;
 import cn.nukkit.Player;
 import cn.nukkit.utils.BinaryStream;
 import net.easecation.ghosty.recording.level.LevelRecordNode;
+import net.easecation.ghosty.recording.player.updated.PlayerUpdatedArmor2;
 
 public class LevelUpdatedMessage implements LevelUpdated {
 
@@ -50,7 +51,8 @@ public class LevelUpdatedMessage implements LevelUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LevelUpdatedMessage o)) return false;
+        if(!(obj instanceof LevelUpdatedMessage)) return false;
+        LevelUpdatedMessage o = (LevelUpdatedMessage) obj;
         return this.message.equals(o.message);
     }
 

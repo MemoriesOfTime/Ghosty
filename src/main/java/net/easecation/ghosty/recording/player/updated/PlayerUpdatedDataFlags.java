@@ -48,7 +48,8 @@ public class PlayerUpdatedDataFlags implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedDataFlags o)) return false;
+        if(!(obj instanceof PlayerUpdatedDataFlags)) return false;
+        PlayerUpdatedDataFlags o = (PlayerUpdatedDataFlags) obj;
         return flags == o.flags;
     }
 

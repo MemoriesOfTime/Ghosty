@@ -53,7 +53,8 @@ public class EntityUpdatedRotation implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedRotation o)) return false;
+        if(!(obj instanceof EntityUpdatedRotation)) return false;
+        EntityUpdatedRotation o = (EntityUpdatedRotation) obj;
         return (yaw == o.yaw) && (pitch == o.pitch);
     }
 

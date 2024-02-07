@@ -53,7 +53,8 @@ public class PlayerUpdatedEntityEvent implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedEntityEvent o)) return false;
+        if(!(obj instanceof PlayerUpdatedEntityEvent)) return false;
+        PlayerUpdatedEntityEvent o = (PlayerUpdatedEntityEvent) obj;
         return event == o.event && data == o.data;
     }
 

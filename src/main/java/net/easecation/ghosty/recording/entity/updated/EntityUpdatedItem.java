@@ -5,6 +5,7 @@ import cn.nukkit.utils.BinaryStream;
 import net.easecation.ghosty.GhostyPlugin;
 import net.easecation.ghosty.entity.SimulatedEntity;
 import net.easecation.ghosty.recording.entity.EntityRecordNode;
+import net.easecation.ghosty.recording.level.updated.LevelUpdatedPopup;
 
 /**
  * Created by Mulan Lin('Snake1999') on 2016/11/19 17:02.
@@ -49,7 +50,8 @@ public class EntityUpdatedItem implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedItem o)) return false;
+        if(!(obj instanceof EntityUpdatedItem)) return false;
+        EntityUpdatedItem o = (EntityUpdatedItem) obj;
         return (item.equals(o.item));
     }
 

@@ -73,7 +73,8 @@ public class PlayerUpdatedPositionXYZ implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedPositionXYZ o)) return false;
+        if(!(obj instanceof PlayerUpdatedPositionXYZ)) return false;
+        PlayerUpdatedPositionXYZ o = (PlayerUpdatedPositionXYZ) obj;
         return (x == o.x) && (y == o.y) && (z==o.z);
     }
 

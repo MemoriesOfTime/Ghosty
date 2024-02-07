@@ -130,9 +130,9 @@ public class EntityRecordImpl implements EntityRecord {
         if (lastMarkVariant != markVariant) {
             push(tick, EntityUpdatedMarkVariant.of(markVariant));
         }
-        SimulatedEntity.SkinInfo lastSkinInfo = last.getSkinInfo(), skinInfo = node.getSkinInfo();
+        SkinInfo lastSkinInfo = last.getSkinInfo(), skinInfo = node.getSkinInfo();
         if (!Objects.equals(lastSkinInfo, skinInfo)) {
-            push(tick, EntityUpdatedSkinInfo.of(skinInfo.geoName(), skinInfo.dataHash()));
+            push(tick, EntityUpdatedSkinInfo.of(skinInfo.getGeoName(), skinInfo.getDataHash()));
         }
         last = node;
     }

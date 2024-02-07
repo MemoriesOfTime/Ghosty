@@ -54,7 +54,8 @@ public class PlayerUpdatedArmor3 implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedArmor3 o)) return false;
+        if(!(obj instanceof PlayerUpdatedArmor3)) return false;
+        PlayerUpdatedArmor3 o = (PlayerUpdatedArmor3) obj;
         return (item.equals(o.item));
     }
 

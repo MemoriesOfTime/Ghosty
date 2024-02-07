@@ -48,7 +48,8 @@ public class EntityUpdatedTagName implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedTagName o)) return false;
+        if(!(obj instanceof EntityUpdatedTagName)) return false;
+        EntityUpdatedTagName o = (EntityUpdatedTagName) obj;
         return (Objects.equals(tn, o.tn));
     }
 

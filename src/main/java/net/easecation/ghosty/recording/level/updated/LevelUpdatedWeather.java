@@ -50,7 +50,8 @@ public class LevelUpdatedWeather implements LevelUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof LevelUpdatedWeather o)) return false;
+        if(!(obj instanceof LevelUpdatedWeather)) return false;
+        LevelUpdatedWeather o = (LevelUpdatedWeather) obj;
         return this.rain == o.rain && this.intensity == o.intensity;
     }
 

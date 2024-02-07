@@ -9,8 +9,8 @@
     <version>B20240115-MOT-C1</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -57,8 +57,7 @@
         <dependency>
             <groupId>cn.nukkit</groupId>
             <artifactId>Nukkit</artifactId>
-            <version>MOT-SNAPSHOT</version>
-            <scope>provided</scope>
+            <version>MOT-java8-20240128.013629-5</version>
         </dependency>
         <!--<dependency>
             <groupId>org.itxtech.synapse</groupId>

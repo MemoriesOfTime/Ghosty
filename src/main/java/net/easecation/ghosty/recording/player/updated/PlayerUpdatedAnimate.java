@@ -53,7 +53,8 @@ public class PlayerUpdatedAnimate implements PlayerUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PlayerUpdatedAnimate o)) return false;
+        if(!(obj instanceof PlayerUpdatedAnimate)) return false;
+        PlayerUpdatedAnimate o = (PlayerUpdatedAnimate) obj;
         return action == o.action && rowingTime == o.rowingTime;
     }
 

@@ -5,8 +5,6 @@ import java.util.function.Predicate;
 
 public class PlaybackIterator<T> {
 
-    public record RecordEntry<T>(int tick, T entry) {}
-
     List<RecordEntry<T>> list = new ArrayList<>();
     int currentIndex = 0; // 当前迭代的位置
 
@@ -19,14 +17,14 @@ public class PlaybackIterator<T> {
      */
     public void insert(int tick, T entry) {
         // 如果列表为空或最后一个元素的tick小于新元素的tick，则直接添加
-        if (list.isEmpty() || list.get(list.size() - 1).tick() <= tick) {
+        if (list.isEmpty() || list.get(list.size() - 1).getTick() <= tick) {
             list.add(new RecordEntry<>(tick, entry));
             return;
         }
         // 否则，找到正确的插入位置
         ListIterator<RecordEntry<T>> it = list.listIterator();
         while (it.hasNext()) {
-            if (it.next().tick() > tick) {
+            if (it.next().getTick() > tick) {
                 it.previous();
                 it.add(new RecordEntry<>(tick, entry));
                 return;
@@ -36,19 +34,19 @@ public class PlaybackIterator<T> {
 
     public int getFirstTick() {
         if (list.isEmpty()) return -1;
-        return list.get(0).tick();
+        return list.get(0).getTick();
     }
 
     public int getLastTick() {
         if (list.isEmpty()) return -1;
-        return list.get(list.size() - 1).tick();
+        return list.get(list.size() - 1).getTick();
     }
 
     public List<T> pollToTick(int tick) {
         if (this.currentIndex >= list.size()) return Collections.emptyList();  // 如果当前迭代器已经到达末尾，直接返回空列表
         List<T> ans = new LinkedList<>();
-        while (currentIndex < list.size() && list.get(currentIndex).tick() <= tick) {
-            ans.add(list.get(currentIndex).entry());
+        while (currentIndex < list.size() && list.get(currentIndex).getTick() <= tick) {
+            ans.add(list.get(currentIndex).getEntry());
             currentIndex++;
         }
         return ans;
@@ -57,12 +55,12 @@ public class PlaybackIterator<T> {
     public List<T> pollBackwardToTick(int tick) {
         if (this.currentIndex <= 0) return Collections.emptyList();  // 如果当前迭代器已经到达开头，直接返回空列表
         List<T> ans = new LinkedList<>();
-        while (currentIndex > 0 && list.get(currentIndex - 1).tick() >= tick) {
+        while (currentIndex > 0 && list.get(currentIndex - 1).getTick() >= tick) {
             currentIndex--;
-            ans.add(list.get(currentIndex).entry());
+            ans.add(list.get(currentIndex).getEntry());
         }
         // 如果当前元素的tick值小于目标tick值，将currentIndex向前移动一位
-        if (currentIndex < list.size() && list.get(currentIndex).tick() < tick) {
+        if (currentIndex < list.size() && list.get(currentIndex).getTick() < tick) {
             currentIndex++;
         }
         return ans;
@@ -73,11 +71,11 @@ public class PlaybackIterator<T> {
         if (currentIndex >= list.size()) return ans;
 
         RecordEntry<T> current = list.get(currentIndex);
-        ans.add(current.entry());
+        ans.add(current.getEntry());
         int nextIndex = currentIndex + 1;
 
-        while (nextIndex < list.size() && list.get(nextIndex).tick() == current.tick()) {
-            ans.add(list.get(nextIndex).entry());
+        while (nextIndex < list.size() && list.get(nextIndex).getTick() == current.getTick()) {
+            ans.add(list.get(nextIndex).getEntry());
             nextIndex++;
         }
 
@@ -89,7 +87,7 @@ public class PlaybackIterator<T> {
 
         int nextIndex = currentIndex;
         while (nextIndex < list.size()) {
-            if (predicate.test(list.get(nextIndex).entry())) {
+            if (predicate.test(list.get(nextIndex).getEntry())) {
                 return Optional.of(list.get(nextIndex));
             }
             nextIndex++;
@@ -103,7 +101,7 @@ public class PlaybackIterator<T> {
 
         int prevIndex = currentIndex - 1;
         while (prevIndex >= 0) {
-            if (predicate.test(list.get(prevIndex).entry())) {
+            if (predicate.test(list.get(prevIndex).getEntry())) {
                 return Optional.of(list.get(prevIndex));
             }
             prevIndex--;
@@ -114,14 +112,14 @@ public class PlaybackIterator<T> {
 
     public int peekTick() {
         if (currentIndex >= list.size()) return -1;
-        return list.get(currentIndex).tick();
+        return list.get(currentIndex).getTick();
     }
 
     public int pollTick() {
         if (currentIndex >= list.size()) return -1;
-        int tick = list.get(currentIndex).tick();
+        int tick = list.get(currentIndex).getTick();
         currentIndex++; // 更新迭代器位置
-        while (currentIndex < list.size() && list.get(currentIndex).tick() == tick) {
+        while (currentIndex < list.size() && list.get(currentIndex).getTick() == tick) {
             currentIndex++;
         }
         return tick;
@@ -133,11 +131,11 @@ public class PlaybackIterator<T> {
 
         int prevIndex = currentIndex - 1;
         RecordEntry<T> current = list.get(prevIndex);
-        ans.add(current.entry());
+        ans.add(current.getEntry());
 
-        while (prevIndex > 0 && list.get(prevIndex - 1).tick() == current.tick()) {
+        while (prevIndex > 0 && list.get(prevIndex - 1).getTick() == current.getTick()) {
             prevIndex--;
-            ans.add(list.get(prevIndex).entry());
+            ans.add(list.get(prevIndex).getEntry());
         }
 
         return ans;
@@ -145,14 +143,14 @@ public class PlaybackIterator<T> {
 
     public int peekTickBackward() {
         if (currentIndex <= 0) return -1;
-        return list.get(currentIndex - 1).tick();
+        return list.get(currentIndex - 1).getTick();
     }
 
     public int pollTickBackward() {
         if (currentIndex <= 0) return -1;
         currentIndex--; // 向后移动迭代器位置
-        int tick = list.get(currentIndex).tick();
-        while (currentIndex > 0 && list.get(currentIndex - 1).tick() == tick) {
+        int tick = list.get(currentIndex).getTick();
+        while (currentIndex > 0 && list.get(currentIndex - 1).getTick() == tick) {
             currentIndex--;
         }
         return tick;

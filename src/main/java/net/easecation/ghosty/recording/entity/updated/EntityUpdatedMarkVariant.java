@@ -5,6 +5,7 @@ import cn.nukkit.entity.data.IntEntityData;
 import cn.nukkit.utils.BinaryStream;
 import net.easecation.ghosty.entity.SimulatedEntity;
 import net.easecation.ghosty.recording.entity.EntityRecordNode;
+import net.easecation.ghosty.recording.player.updated.PlayerUpdatedArmor2;
 
 /**
  * Created by Mulan Lin('Snake1999') on 2016/11/19 15:26.
@@ -48,7 +49,8 @@ public class EntityUpdatedMarkVariant implements EntityUpdated {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof EntityUpdatedMarkVariant o)) return false;
+        if(!(obj instanceof EntityUpdatedMarkVariant)) return false;
+        EntityUpdatedMarkVariant o = (EntityUpdatedMarkVariant) obj;
         return data == o.data;
     }
 
